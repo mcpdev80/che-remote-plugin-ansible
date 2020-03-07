@@ -11,15 +11,15 @@ ARG CHE_RUNTIME_VERSION=next
 ARG PYTHON_VERSION=36
 
 FROM eclipse/che-theia-endpoint-runtime:${CHE_RUNTIME_VERSION} as endpoint
-FROM registry.access.redhat.com/ubi7/python-${PYTHON_VERSION}:latest
+FROM registry.access.redhat.com/ubi8/python-${PYTHON_VERSION}:latest
 USER root
 
 # ANSIBLE VERSION
-ENV ANSIBLE_VERSION 2.8.5
+ENV ANSIBLE_VERSION 2.9.0
 
 ENV HOME=/home/theia
 
-RUN yum install -y --disableplugin=subscription-manager https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+RUN yum install -y --disableplugin=subscription-manager https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 RUN yum install -y --disableplugin=subscription-manager nodejs sshpass
 
 RUN	pip install --upgrade pip && \
